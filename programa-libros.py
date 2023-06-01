@@ -1,4 +1,4 @@
-# importamos las librerías "sqlite3" para trabajar con base de datos y "datetime" para usar elementos de tipo fecha
+# importamos las librerías "sqlite3" para trabajar con base de datos 
 import sqlite3
 
 #clase principal
