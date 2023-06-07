@@ -1,6 +1,11 @@
 # importamos las librerías "sqlite3" para trabajar con base de datos y "datetime" para usar elementos de tipo fecha
 import sqlite3
 from datetime import datetime
+
+# Crear conexión a la base de datos
+conexion = sqlite3.connect('libreria.db')
+cursor = conexion.cursor()
+
 # clase principal
 
 class Libreria:
