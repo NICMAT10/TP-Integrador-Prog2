@@ -155,14 +155,25 @@ class Libreria:
             print("El ID ingresado no es válido. Por favor, ingrese un ID numérico.")
     #Ordenar los Libros        
     def listar_libros_ordenados(self):
-        cursor.execute('SELECT ID, Autor, Titulo FROM Libros ORDER BY ID')
-        libros = cursor.fetchall()
-        if libros:
-            print("Listado de Libros:")
-            for libro in libros:
-                print(f"ID: {libro[0]}, Autor: {libro[1]}, Título: {libro[2]}")
-        else:
-            print("No hay libros cargados en la base de datos.")
+         cursor.execute('SELECT Autor, Genero FROM Libros ORDER BY Autor, Genero')
+    libros = cursor.fetchall()
+    if libros:
+        autor_actual = None
+        genero_actual = None
+
+        print("Listado de Libros:")
+        for libro in libros:
+            if libro[0] != autor_actual:
+                autor_actual = libro[0]
+                print(f"\nAutor: {autor_actual}")
+
+            if libro[1] != genero_actual:
+                genero_actual = libro[1]
+                print(f"\n  Género: {genero_actual}")
+
+            print(f"    - {libro[2]}")
+    else:
+        print("No hay libros cargados en la base de datos.")
     
     #Registro de ventas de Libros        
     def registrar_venta(self, libro_id, cantidad):
