@@ -231,7 +231,7 @@ class Libreria:
                     print(f"ID: {libro[0]}, ISBN: {libro[1]}, Título: {libro[2]}, Autor: {libro[3]}, Género: {libro[4]}, Precio: {libro[5]}, Fecha Último Precio: {libro[6]}, Cantidad Disponible: {libro[7]}")
                     
             if historico_libros:
-                print("Registros de histórico_libros:")
+                print("Registros históricos de libros:")
                 for historico_libro in historico_libros:
                     print(f"ID: {historico_libro[0]}, ISBN: {historico_libro[1]}, Título: {historico_libro[2]}, Autor: {historico_libro[3]}, Género: {historico_libro[4]}, Precio: {historico_libro[5]}, Fecha Último Precio: {historico_libro[6]}, Cantidad Disponible: {historico_libro[7]}")
         else:
