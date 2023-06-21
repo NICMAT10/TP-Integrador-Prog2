@@ -53,9 +53,9 @@ class Libreria:
             elif opcion == '7':
                 porcentaje_aumento = float(input("Ingrese el porcentaje de aumento de precios: "))
                 self.actualizar_precios(porcentaje_aumento)
-            elif opcion == '8':
-                fecha_limite = input("Ingrese la fecha límite (formato: 'YYYY-MM-DD'): ")
-                self.mostrar_registros_anteriores(fecha_limite)
+           elif opcion == '8':
+        fecha_limite = input("Ingrese la fecha límite (formato: 'YYYY-MM-DD'): ")
+        self.mostrar_registros_anteriores(fecha_limite)
             elif opcion == '0':
                 print("Saliendo del programa...")
             else:
@@ -214,18 +214,30 @@ class Libreria:
             print("El porcentaje de aumento ingresado no es válido. Por favor, ingrese un valor numérico.")
             
     #Registros Anteriores        
-    def mostrar_registros_anteriores(self, fecha_limite):
-        try:
-            cursor.execute('SELECT * FROM Libros WHERE FechaUltimoPrecio < ?', (fecha_limite,))
-            libros = cursor.fetchall()
+   def mostrar_registros_anteriores(self, fecha_limite):
+    try:
+        cursor.execute('SELECT * FROM Libros WHERE FechaUltimoPrecio < ?', (fecha_limite,))
+        libros = cursor.fetchall()
+        
+        cursor.execute('SELECT * FROM historico_libros WHERE FechaUltimoPrecio < ?', (fecha_limite,))
+        historico_libros = cursor.fetchall()
+        
+        if libros or historico_libros:
+            print("Registros anteriores a la fecha límite:")
+            
             if libros:
-                print("Registros anteriores a la fecha límite:")
+                print("Registros de Libros:")
                 for libro in libros:
                     print(f"ID: {libro[0]}, ISBN: {libro[1]}, Título: {libro[2]}, Autor: {libro[3]}, Género: {libro[4]}, Precio: {libro[5]}, Fecha Último Precio: {libro[6]}, Cantidad Disponible: {libro[7]}")
-            else:
-                print("No hay registros anteriores a la fecha límite en la base de datos.")
-        except ValueError:
-            print("La fecha ingresada no es válida. Por favor, ingrese una fecha en formato 'YYYY-MM-DD'.")
+                    
+            if historico_libros:
+                print("Registros de histórico_libros:")
+                for historico_libro in historico_libros:
+                    print(f"ID: {historico_libro[0]}, ISBN: {historico_libro[1]}, Título: {historico_libro[2]}, Autor: {historico_libro[3]}, Género: {historico_libro[4]}, Precio: {historico_libro[5]}, Fecha Último Precio: {historico_libro[6]}, Cantidad Disponible: {historico_libro[7]}")
+        else:
+            print("No hay registros anteriores a la fecha límite en la base de datos.")
+    except ValueError:
+        print("La fecha ingresada no es válida. Por favor, ingrese una fecha en formato 'YYYY-MM-DD'.")
 
 
 # Crear objeto Libreria y ejecutar menú
